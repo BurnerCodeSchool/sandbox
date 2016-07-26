@@ -149,4 +149,4 @@ get_platform
     rm -rf Videos
     rm -f automated_sandbox.sh
     
-exit
+sudo reboot
