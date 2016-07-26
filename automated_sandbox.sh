@@ -126,13 +126,13 @@ get_platform
     $HOME/.box/bin/box chrome
   ok
   
-  bot "Installing Python"
-    $HOME/.box/bin/box python
-  ok
+  # bot "Installing Python"
+  #   $HOME/.box/bin/box python
+  # ok
   
-  bot "Installing Ansible"
-    $HOME/.box/bin/box ansible
-  ok
+  # bot "Installing Ansible"
+  #   $HOME/.box/bin/box ansible
+  # ok
   
   bot "Installing Z Shell"
     $HOME/.box/bin/box zsh
