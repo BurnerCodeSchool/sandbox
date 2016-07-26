@@ -23,16 +23,14 @@ function get_platform() {
   if [ "$(uname -s)" == "Darwin" ]; then
     # Do something for OSX
     export NS_PLATFORM="darwin"
-    running "darwin platform detected"
+    die "OSX not supported"
   elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
   	# Do something for Linux platform
   	# assume ubuntu - but surely this can be extended to include other distros
   	export NS_PLATFORM="linux"
-    running "linux platform detected"
   elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
     # Do something for Windows NT platform
   	export NS_PLATFORM="windows"
-    running "windoze platform detected"
     die "Windows not supported"
   fi
   ok
@@ -68,11 +66,6 @@ banner
 
 get_platform
 
-if [ "$NS_PLATFORM" == "darwin" ]; then
-  echo "not meant for darwin"
-fi
-
-if [ "$NS_PLATFORM" == "linux" ]; then
   bot "PreFixing your sandbox"
 
   prompt_name
@@ -146,7 +139,5 @@ if [ "$NS_PLATFORM" == "linux" ]; then
     rm -rf Templates
     rm -rf Videos
     rm -f automated_sandbox.sh
-
-fi
 
 exit
