@@ -129,6 +129,10 @@ if [ "$NS_PLATFORM" == "linux" ]; then
     $HOME/.box/bin/box nodejs
   ok
 
+  bot "Installing Google Chrome"
+    $HOME/.box/bin/box chrome
+  ok
+  
   bot "Installing Z Shell"
     $HOME/.box/bin/box zsh
   ok
