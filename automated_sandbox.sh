@@ -75,6 +75,10 @@ get_platform
     DEV=`whoami`
     sudo_write "$DEV ALL=(ALL) NOPASSWD: ALL" "/etc/sudoers.d/$DEV"
   ok
+  
+  bot "Adding user to vboxsf group (for folder sharing)"
+    sudo usermod -a -G vboxsf $DEV
+  ok
 
   # not needed if running linux mint 18 
   # bot "Install DKMS"
