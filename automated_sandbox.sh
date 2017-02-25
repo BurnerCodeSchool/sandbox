@@ -64,11 +64,11 @@ bot "Install GIT"
 ok
 
 bot "Installing .Box"
-  git clone https://russelltsherman/.box.git $HOME/.box
+  git clone https://github.com/russelltsherman/.box.git $HOME/.box
 ok
 
 bot "Installing .Box"
-  (cd $HOME/.box && ./setup.sh)
+  (cd $HOME/.box && ./install.sh)
 ok
 
 bot "Installing Atom text editor"
