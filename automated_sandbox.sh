@@ -40,117 +40,74 @@ function ok() { echo -e "$COL_GREEN[ok]$COL_RESET"; }
 
 function bot() { echo -e "\n$COL_GREEN\[._.]/$COL_RESET - $1"; }
 
-function info() { echo -e "$COL_GREEN $1 $COL_RESET"; }
-
-function sudo_write {
-  # try to ensure we don't create duplicate entries in the .coderonin file
-  sudo "$BASH" -c "touch $2"
-  if ! grep -q "$1" "$2" ; then
-    sudo "$BASH" -c "echo \"$1\" >> \"$2\""
-  fi
-}
-
-function prompt_name {
-  echo -n "Enter your name and press [ENTER]: "
-  read name
-  export USER_NAME=$name
-}
-
-function prompt_email {
-  echo -n "Enter your email and press [ENTER]: "
-  read email
-  export USER_EMAIL=$email
-}
-
 banner
 
 get_platform
 
-  bot "PreFixing your sandbox"
+bot "Adding user to vboxsf group (for folder sharing)"
+  DEV=`whoami`
+  sudo usermod -a -G vboxsf $DEV
+ok
 
-  prompt_name
-  prompt_email
+# not needed if running linux mint 18 
+# bot "Install DKMS"
+#   sudo apt-get -y install dkms
+# ok
 
-  bot "Allowing sudo without password"
-    DEV=`whoami`
-    sudo_write "$DEV ALL=(ALL) NOPASSWD: ALL" "/etc/sudoers.d/$DEV"
-  ok
-  
-  bot "Adding user to vboxsf group (for folder sharing)"
-    sudo usermod -a -G vboxsf $DEV
-  ok
+# not needed if running linux mint 18 
+# bot "Install VBoxLinuxAdditions"
+#   ( cd /media/$DEV/VBOXADDITIONS_5.0.20_106931/ && sudo ./VBoxLinuxAdditions.run )
+# ok
 
-  # not needed if running linux mint 18 
-  # bot "Install DKMS"
-  #   sudo apt-get -y install dkms
-  # ok
+bot "Install GIT"
+  sudo apt-get install -y git
+ok
 
-  # not needed if running linux mint 18 
-  # bot "Install VBoxLinuxAdditions"
-  #   ( cd /media/$DEV/VBOXADDITIONS_5.0.20_106931/ && sudo ./VBoxLinuxAdditions.run )
-  # ok
+bot "Installing .Box"
+  git clone https://russelltsherman/.box.git $HOME/.box
+ok
 
-  bot "Install GIT"
-    sudo apt-get install -y git
-  ok
+bot "Installing .Box"
+  (cd $HOME/.box && ./setup.sh)
+ok
 
-  bot "Installing .Box"
-    git clone https://github.com/bhedana/.box.git $HOME/.box
-  ok
+bot "Installing Atom text editor"
+  $HOME/.box/bin/box setup atom
+ok
 
-  bot "Installing .Box essentials"
-    $HOME/.box/bin/box essentials
-  ok
+bot "Installing GitFlow and GIBO"
+  $HOME/.box/bin/box setup git
+ok
 
-  bot "Installing .Proj"
-    $HOME/.box/bin/box add-proj
-  ok
+bot "Installing Git Kraken"
+  $HOME/.box/bin/box setup gitkraken
+ok
 
-  # bot "Installing .Box defaults"
-  #   $HOME/.box/bin/box defaults
-  # ok
+bot "Installing NodeJS"
+  $HOME/.box/bin/box setup nodejs
+ok
 
-  bot "Installing Atom text editor"
-    $HOME/.box/bin/box atom
-  ok
+bot "Installing Google Chrome"
+  $HOME/.box/bin/box setup chrome
+ok
 
-  bot "Installing GitFlow and GIBO"
-    $HOME/.box/bin/box git
-  ok
+# bot "Installing Python"
+#   $HOME/.box/bin/box setup python
+# ok
 
-  bot "Installing Git Kraken"
-    $HOME/.box/bin/box gitkraken
-  ok
+# bot "Installing Ansible"
+#   $HOME/.box/bin/box setup ansible
+# ok
 
-  bot "Installing NodeJS"
-    $HOME/.box/bin/box nodejs
-  ok
+bot "Cleaning Up"
+  mkdir src
+  rm -rf Documents
+  rm -rf Downloads
+  rm -rf Music
+  rm -rf Pictures
+  rm -rf Public
+  rm -rf Templates
+  rm -rf Videos
+  rm -f automated_sandbox.sh
 
-  bot "Installing Google Chrome"
-    $HOME/.box/bin/box chrome
-  ok
-  
-  # bot "Installing Python"
-  #   $HOME/.box/bin/box python
-  # ok
-  
-  # bot "Installing Ansible"
-  #   $HOME/.box/bin/box ansible
-  # ok
-  
-  bot "Installing Z Shell"
-    $HOME/.box/bin/box zsh
-  ok
-
-  bot "Cleaning Up"
-    mkdir src
-    rm -rf Documents
-    rm -rf Downloads
-    rm -rf Music
-    rm -rf Pictures
-    rm -rf Public
-    rm -rf Templates
-    rm -rf Videos
-    rm -f automated_sandbox.sh
-    
 sudo reboot
