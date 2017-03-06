@@ -71,6 +71,9 @@ bot "Installing .Box"
   (cd $HOME/.box && ./install.sh)
 ok
 
+export BOXROOTDIR=$HOME/.box
+export BOXFUNCDIR=$BOXROOTDIR/functions
+
 bot "Installing Atom text editor"
   $HOME/.box/bin/box setup atom
 ok
