@@ -49,12 +49,12 @@ bot "Adding user to vboxsf group (for folder sharing)"
   sudo usermod -a -G vboxsf $DEV
 ok
 
-# not needed if running linux mint 18 
+# not needed if running linux mint Cinnamon 
 # bot "Install DKMS"
 #   sudo apt-get -y install dkms
 # ok
 
-# not needed if running linux mint 18 
+# not needed if running linux mint Cinnamon 
 # bot "Install VBoxLinuxAdditions"
 #   ( cd /media/$DEV/VBOXADDITIONS_5.0.20_106931/ && sudo ./VBoxLinuxAdditions.run )
 # ok
