@@ -60,11 +60,11 @@ ok
 # ok
 
 bot "Install GIT"
-  sudo apt-get install -y git
+  (sudo apt-get install -y git > /dev/null 2>&1)
 ok
 
 bot "Installing .Box"
-  git clone https://github.com/russelltsherman/.box.git $HOME/.box
+  (git clone https://github.com/russelltsherman/.box.git $HOME/.box > /dev/null 2>&1)
 ok
 
 bot "Installing .Box"
