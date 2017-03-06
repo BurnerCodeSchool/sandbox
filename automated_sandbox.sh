@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
-# Usage: box $1
-# Summary: write a summary for your new command
-# Help:
-#
-# Colors
+
 ESC_SEQ="\x1b["
 COL_RESET=$ESC_SEQ"39;49;00m"
 COL_GREEN=$ESC_SEQ"32;01m"
@@ -19,30 +15,11 @@ function banner() {
 '
 }
 
-function get_platform() {
-  if [ "$(uname -s)" == "Darwin" ]; then
-    # Do something for OSX
-    export NS_PLATFORM="darwin"
-    die "OSX not supported"
-  elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-  	# Do something for Linux platform
-  	# assume ubuntu - but surely this can be extended to include other distros
-  	export NS_PLATFORM="linux"
-  elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
-    # Do something for Windows NT platform
-  	export NS_PLATFORM="windows"
-    die "Windows not supported"
-  fi
-  ok
-}
-
 function ok() { echo -e "$COL_GREEN[ok]$COL_RESET"; }
 
 function bot() { echo -e "\n$COL_GREEN\[._.]/$COL_RESET - $1"; }
 
 banner
-
-get_platform
 
 bot "Adding user to vboxsf group (for folder sharing)"
   DEV=`whoami`
@@ -70,33 +47,6 @@ ok
 bot "Installing .Box"
   (cd $HOME/.box && ./install.sh)
 ok
-
-export BOXROOTDIR=$HOME/.box
-export BOXFUNCDIR=$BOXROOTDIR/functions
-
-bot "Installing Google Chrome"
-  $HOME/.box/bin/box setup chrome
-ok
-
-bot "Installing GitFlow and GIBO"
-  $HOME/.box/bin/box setup git
-ok
-
-bot "Installing Git Kraken"
-  $HOME/.box/bin/box setup gitkraken
-ok
-
-bot "Installing Atom text editor"
-  $HOME/.box/bin/box setup atom
-ok
-
-# bot "Installing Python"
-#   $HOME/.box/bin/box setup python
-# ok
-
-# bot "Installing Ansible"
-#   $HOME/.box/bin/box setup ansible
-# ok
 
 bot "Cleaning Up"
   mkdir src
