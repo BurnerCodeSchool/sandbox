@@ -90,10 +90,6 @@ bot "Installing Atom text editor"
   $HOME/.box/bin/box setup atom
 ok
 
-bot "Installing NodeJS"
-  $HOME/.box/bin/box setup nodejs
-ok
-
 # bot "Installing Python"
 #   $HOME/.box/bin/box setup python
 # ok
