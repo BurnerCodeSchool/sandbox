@@ -110,4 +110,4 @@ bot "Cleaning Up"
   rm -rf Videos
   rm -f automated_sandbox.sh
 
-sudo reboot
+# sudo reboot
