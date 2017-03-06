@@ -74,8 +74,8 @@ ok
 export BOXROOTDIR=$HOME/.box
 export BOXFUNCDIR=$BOXROOTDIR/functions
 
-bot "Installing Atom text editor"
-  $HOME/.box/bin/box setup atom
+bot "Installing Google Chrome"
+  $HOME/.box/bin/box setup chrome
 ok
 
 bot "Installing GitFlow and GIBO"
@@ -86,12 +86,12 @@ bot "Installing Git Kraken"
   $HOME/.box/bin/box setup gitkraken
 ok
 
-bot "Installing NodeJS"
-  $HOME/.box/bin/box setup nodejs
+bot "Installing Atom text editor"
+  $HOME/.box/bin/box setup atom
 ok
 
-bot "Installing Google Chrome"
-  $HOME/.box/bin/box setup chrome
+bot "Installing NodeJS"
+  $HOME/.box/bin/box setup nodejs
 ok
 
 # bot "Installing Python"
