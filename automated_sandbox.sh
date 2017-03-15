@@ -49,7 +49,6 @@ bot "Installing .Box"
 ok
 
 bot "Cleaning Up"
-  mkdir src
   rm -rf Documents
   rm -rf Downloads
   rm -rf Music
